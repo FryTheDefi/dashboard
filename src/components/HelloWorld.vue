@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>{{ msg }}</h1>
-    <Segment />
+    <!-- <Segment /> -->
     <h3>Essential Links</h3>
     <ul>
       <li><a href="https://vuejs.org" target="_blank" rel="noopener">Core Docs</a></li>
@@ -15,11 +15,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import Segment from '@/components/shared/Segment';
+// import Segment from './shared/Segment';
 
 @Component({
   components: {
-    Segment,
+    // Segment,
   },
 })
 export default class HelloWorld extends Vue {
