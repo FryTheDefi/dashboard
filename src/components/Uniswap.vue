@@ -7,7 +7,7 @@
   </header>
   <div class="card-content">
     <div class="content">
-      <div>{{ hello }}</div>
+      <div>{{ exchanges }}</div>
     </div>
   </div>
 </div>
@@ -19,8 +19,17 @@ import gql from 'graphql-tag';
 
 @Component({
 apollo: {
-    hello: gql`query {
-      hello
+    exchanges: gql`query {
+      exchanges(orderBy: tradeVolumeEth, orderDirection: desc) {
+        id
+        price
+        priceUSD
+        tokenName
+        ethBalance
+        tokenAddress
+        ethBalance
+        tokenSymbol
+      }
     }`,
   },
 })
