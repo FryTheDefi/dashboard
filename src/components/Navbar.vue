@@ -15,6 +15,9 @@
         </template>
 
         <template slot="end">
+          <b-navbar-item>
+              {{ user.name }}
+          </b-navbar-item>
             <b-navbar-item tag="div">
                 <div class="buttons">
                   <router-link to="/chat" class="button is-light">
@@ -28,8 +31,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
 import Login from '@/components/Login.vue';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {
@@ -37,6 +40,10 @@ import Login from '@/components/Login.vue';
   },
 })
 export default class Navbar extends Vue {
+
+   get user() {
+    return this.$store.state.currentUser; // this.todos;
+}
 
 }
 </script>

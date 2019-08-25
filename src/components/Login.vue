@@ -1,18 +1,14 @@
 <template>
   <div>
-    <span>{{user.email}}</span>
     <b-button v-if="publicAddress === ''" @click="login" type="button is-primary"><strong>Login</strong></b-button>
-    <b-button v-if="publicAddress !== ''" @click="getTorusPK" type="button is-primary"><strong>Send</strong></b-button>
-    <button v-if="publicAddress !== ''" @click="changeProvider">Change Provider</button>
-    <button v-if="publicAddress !== ''" @click="getUserInfo">Get User Info</button>
-    <button v-if="publicAddress !== ''" @click="getTorusData">getTorusData</button>
-    <button v-if="publicAddress !== ''" @click="logout">Logout</button>
+    <b-button v-if="publicAddress !== ''" @click="setUserInfo" type="button is-secondary"><strong>Approve App</strong></b-button>
   </div>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import Box from '3box';
 import Torus from '@toruslabs/torus-embed';
+import { Component, Prop, Vue } from 'vue-property-decorator';
 import Web3 from 'web3';
 
 @Component
@@ -36,11 +32,15 @@ export default class Login extends Vue {
       await torus.login(); // await torus.ethereum.enable()
       // (window as any).torus.setProvider("rinkeby"); //'rinkeby'
       const web3 = new Web3(torus.provider);
+
       web3.eth.getAccounts().then((accounts: string[]) => {
         this.publicAddress = accounts[0];
-        web3.eth.getBalance(accounts[0]).then(console.log);
       });
+
       (window as any).torus = torus;
+
+
+
     } catch (error) {
       console.error(error);
     }
@@ -49,7 +49,7 @@ export default class Login extends Vue {
 
 // possiblity to send eth to 'mail'
   public getTorusPK() {
-    const email: string = 'viktorko99@gmail.com';
+    // const email: string = 'viktorko99@gmail.com';
     (window as any).torus.getPublicAddress(email).then(console.log);
   }
 
@@ -66,10 +66,27 @@ export default class Login extends Vue {
     (window as any).torus.setProvider('rinkeby');
   }
 
-  public async getUserInfo() {
-    const userInfo = await (window as any).torus.getUserInfo();
-    console.log(userInfo);
-    this.$store.dispatch('addUser', userInfo.data.payload);
+  public async setUserInfo() {
+    try {
+      const userInfo = await (window as any).torus.getUserInfo();
+      this.$store.dispatch('addUser', { ...userInfo.data.payload });
+      this.createBoxProfile({ ...userInfo.data.payload });
+
+    } catch (e) {
+      console.warn(e);
+    }
+
+  }
+
+   public async createBoxProfile(userData) {
+
+     const profile = await Box.getProfile(this.publicAddress);
+     console.log('createBoxProfile', profile);
+     if (!profile.name) {
+    const box = await Box.openBox(this.publicAddress, (window as any).torus.ethereum, {});
+    await box.public.setMultiple(Object.keys(userData), Object.values(userData));
+      }
+
   }
 }
 </script>
