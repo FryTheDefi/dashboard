@@ -9,7 +9,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
-@Component()
+@Component
 export default class AddInput extends Vue {
   public name: string = '';
 

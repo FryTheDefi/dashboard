@@ -47,12 +47,6 @@ export default class Login extends Vue {
 
   }
 
-// possiblity to send eth to 'mail'
-  public getTorusPK() {
-    // const email: string = 'viktorko99@gmail.com';
-    (window as any).torus.getPublicAddress(email).then(console.log);
-  }
-
   public getTorusData() {
     console.log((window as any).torus);
   }

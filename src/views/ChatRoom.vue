@@ -52,7 +52,6 @@ export default class ChatRoom extends Vue {
        const chatSpace = await box.openSpace('fry-the-defi');
 
        this.chatSpace = chatSpace;
-       window.space = chatSpace;
        const myDid = chatSpace.DID;
 
       const threads = ['welcome']; 
@@ -89,7 +88,7 @@ export default class ChatRoom extends Vue {
     let userMap = {}
 
 
-    const yy = Array.from(uniqueUsers).map(async (userDID) => {
+    const yy = Array.from(uniqueUsers).map(async (userDID: string) => {
         
         try {
           const x = await Box.getProfile(userDID);
