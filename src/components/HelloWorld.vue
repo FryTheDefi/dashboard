@@ -14,13 +14,8 @@
 </template>
 
 <script lang="ts">
-<<<<<<< HEAD
-import Segment from '@/components/shared/Segment';
-import { Component, Prop, Vue } from 'vue-property-decorator';
-=======
 import { Component, Prop, Vue } from 'vue-property-decorator';
 // import Segment from './shared/Segment';
->>>>>>> f671eb03b0d06cfd0f3240a98a4513b718927dbc
 
 @Component({
   components: {
