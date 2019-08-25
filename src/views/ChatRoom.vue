@@ -55,8 +55,7 @@ export default class ChatRoom extends Vue {
        window.space = chatSpace;
        const myDid = chatSpace.DID;
 
-      const threads = await chatSpace.public.get('threads');
-      console.log('threadsthreads', threads)
+      const threads = ['welcome']; 
        this.threads = threads || [];
     }
      console.log('Vue instance created');
