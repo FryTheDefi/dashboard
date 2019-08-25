@@ -2,15 +2,20 @@
   <div>
     <div class="columns">
       <div class="column">
-        <Segment />
-      </div>
-      <div class="column">
-        <Segment />
-      </div>
-      <div class="column">
-        <Segment />
+        You need login to see chat
       </div>
     </div>
+    <!-- <div class="columns">
+      <div class="column">
+        <Segment />
+      </div>
+      <div class="column">
+        <Segment />
+      </div>
+      <div class="column">
+        <Segment />
+      </div>
+    </div> -->
     <!-- <div class="columns">
       <div class="column">
         <Dydx />

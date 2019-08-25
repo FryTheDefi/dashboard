@@ -13,7 +13,7 @@
       <div>total tx {{ $apolloData.data.uniswaps[0].exchangeHistoryEntityCount }}</div>
     </div>
   </div>
-  <section>
+  <!-- <section>
         <b-table
             :data="isEmpty ? [] : tableData"
             :mobile-cards="hasMobileCards">
@@ -61,7 +61,7 @@
                 </section>
             </template>
         </b-table>
-    </section>
+    </section> -->
 </div>
 </template>
 
