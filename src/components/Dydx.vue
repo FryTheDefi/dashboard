@@ -2,15 +2,14 @@
   <div class="card">
   <header class="card-header">
     <p class="card-header-title">
-      Uniswap Stats
+      DyDx Stats
     </p>
   </header>
   <div class="card-content">
     <div class="content">
-      <div>totalLiqudityUSD {{ $apolloData.data.uniswaps[0].totalLiquidityUSD }}</div>
-      <div>totalVolumeETH {{ $apolloData.data.uniswaps[0].totalVolumeInEth.slice(0,12) }}</div>
-      <div>totalVolumeUSD {{ $apolloData.data.uniswaps[0].totalVolumeUSD.slice(0,12) }}</div>
-      <div>total tx {{ $apolloData.data.uniswaps[0].exchangeHistoryEntityCount }}</div>
+      <div>Price DAI -  {{ $apolloData.data.markets[0].price}}</div>
+      <div>Borrow Interest Rate - {{ $apolloData.data.markets[0].borrowInterestRate}}</div>
+      <div>Utilization - {{ $apolloData.data.markets[0].utilization.slice(0,8)}}</div>
     </div>
   </div>
   <section>
@@ -71,24 +70,26 @@ import gql from 'graphql-tag';
 
 @Component({
 apollo: {
-    uniswaps: gql`query {
-        uniswaps(first: 1) {
-          id
-          exchangeCount
-          totalVolumeInEth
-          totalVolumeUSD
-          totalLiquidityUSD
-          totalTokenSells
-          totalTokenBuys
-          exchangeHistoryEntityCount
-          txCount
+    markets: gql`query {
+          markets(where:{tokenSymbol:"DAI"}) {
+            id
+            tokenSymbol
+            lastIndexUpdate
+            price
+            utilization
+            borrowInterestRate
+            supplyInterestRate
+            supplied
+            borrowed
         }
     }`,
   },
 })
-export default class Uniswap extends Vue {
-  public apollo: object = {};
-  public uniswaps = [];
+export default class Dydx extends Vue {
+  public apollo: object = {
+      $client: 'b'
+  };
+  public markets = [];
   public tableData = [
                 { id: 1, first_name: '', last_name: 'Simmons', date: '2016/10/15 13:43:27', gender: 'Male' },
             ];

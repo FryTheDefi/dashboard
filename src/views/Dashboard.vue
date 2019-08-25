@@ -11,9 +11,14 @@
         <Segment />
       </div>
     </div>
+    <!-- <div class="columns">
+      <div class="column">
+        <Dydx />
+      </div>
+    </div> -->
     <div class="columns">
       <div class="column">
-        <Uniswap/>
+        <Uniswap />
       </div>
     </div>
   </div>
@@ -23,11 +28,13 @@
 import Segment from '@/components/shared/Segment.vue';
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import Uniswap from '@/components/Uniswap.vue';
+// import Dydx from '@/components/Dydx.vue';
 
 @Component({
   components: {
     Segment,
     Uniswap,
+    // Dydx
   },
 })
 export default class Dashboard extends Vue {}
